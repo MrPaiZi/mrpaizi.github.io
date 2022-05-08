@@ -7,3 +7,7 @@
 ### 注
 
 - 访问地址：[个人主页](http://mrpaizi.xyz/)
+
+### 访问量
+
+![](http://profile-counter.glitch.me/MrPaiZi/count.svg)
