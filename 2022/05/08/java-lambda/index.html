@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hello World! | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无论匿名内部类、Lambda 表达式还是方法引用，都是将一个签名相对应的函数作为参数传入方法中，来灵活地参与方法内的运算，进而简化代码编写。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello World!">
+<meta property="og:url" content="http://example.com/2022/05/08/java-lambda/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="无论匿名内部类、Lambda 表达式还是方法引用，都是将一个签名相对应的函数作为参数传入方法中，来灵活地参与方法内的运算，进而简化代码编写。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-05-08T05:10:47.000Z">
+<meta property="article:modified_time" content="2022-05-08T05:15:22.252Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java-lambda" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/05/08/java-lambda/" class="article-date">
+  <time datetime="2022-05-08T05:10:47.000Z" itemprop="datePublished">2022-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hello World!
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>无论匿名内部类、Lambda 表达式还是方法引用，都是将一个签名相对应的函数作为参数传入方法中，来灵活地参与方法内的运算，进而简化代码编写。</p>
+<span id="more"></span>
+
+<p>函数式编程最早是数学家<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87">阿隆佐·邱奇</a>研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。</p>
+<p>函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
+<p>虽然Java不支持单独定义函数，但可以把静态方法视为独立的函数，把实例方法视为自带<code>this</code>参数的函数。从 Java 8 开始，Java 平台支持函数式编程。</p>
+<p>将一个实例传入一个方法中，实例的成员方法就相当于作为参数传入其他函数的函数，这样就可以实现函数式编程。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义接口的实现子类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Print</span> <span class="keyword">implements</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 覆写IPrint中的print()方法。</span></span><br><span class="line">        System.out.println(<span class="string">&quot;实现子类的传入信息&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Lambda</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 传入子类的实例化对象</span></span><br><span class="line">        fun(<span class="keyword">new</span> <span class="title class_">Print</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(IPrint msg)</span> &#123; <span class="comment">// 接收接口对象</span></span><br><span class="line">        msg.print();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只需要编写<code>IPrint</code>接口的不同实现子类，设置其中的成员方法内容，就可以在不动方法<code>fun(IPrint msg)</code>本身的前提下改变传入到方法的“函数”，进而改变方法的执行结果，实现传入普通参数难以达到的灵活性。比如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Print</span> <span class="keyword">implements</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 覆写IPrint中的print()方法。</span></span><br><span class="line">        System.out.println(<span class="string">&quot;打印普通信息&quot;</span>);</span><br><span class="line">        System.err.println(<span class="string">&quot;打印错误信息&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时打印普通信息和错误信息，甚至做出更复杂的效果，这是只接收字符串等参数传入的方法无法灵活做到的。以往想要改变一个方法的逻辑，必须要改写方法本身，现在只需要改变传入的“函数”即可。</p>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>如果<code>Print</code>类只使用一次，还要将其定义为一个具体的类，就很麻烦。这时就可以用到匿名内部类了。</p>
+<p>内部类是指在类内部定义的类结构，利用内部类可以方便地实现私有属性的互相访问，一般的内部类需要明确地使用class进行定义，而匿名内部类较为特殊，是没有名字的类。必须在抽象类或接口的基础上才能定义，可以实例化抽象类或接口，适合用来创建<strong>一次性子类</strong>。</p>
+<p>语法：<code>new 抽象类名或接口名() &#123;&#125;</code>，大括号内部的内容即是该实例化子类的内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Lambda</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//匿名内部类</span></span><br><span class="line">        fun(<span class="keyword">new</span> <span class="title class_">IPrint</span>() &#123; <span class="comment">// 实例化接口IPrint</span></span><br><span class="line">            <span class="comment">//覆写IPrint中的print()方法。</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;匿名内部类&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(IPrint msg)</span> &#123;</span><br><span class="line">        msg.print();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就相当于创建了一个一次性的<strong>子类</strong>，简化了实例化<strong>抽象类</strong>或<strong>接口</strong>的操作。可能由于这个类是在一个类内部声明的，所以被叫作<strong>内部类</strong>。但实际上它跟真正的<strong>内部类</strong>关系不大，相反具有更多<strong>子类</strong>的性质，所以叫<strong>匿名子类</strong>或者<strong>匿名类</strong>更合适。其<strong>匿名内部类</strong>的名称可能只是一个惯例，其来历这里就不深究了，读者只需理解它的性质，不要被它的名称搞晕即可。</p>
+<h3 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h3><p>我们把只定义了一个抽象方法的接口称之为函数式接口（Functional Interface），用注解<code>@FunctionalInterface</code>标记。例如，<code>Callable</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Callable</span>&lt;V&gt; &#123;</span><br><span class="line">    V <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再来看<code>Comparator</code>接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Comparator</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="title function_">compare</span><span class="params">(T o1, T o2)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Comparator&lt;T&gt; <span class="title function_">reversed</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Collections.reverseOrder(<span class="built_in">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">default</span> Comparator&lt;T&gt; <span class="title function_">thenComparing</span><span class="params">(Comparator&lt;? <span class="built_in">super</span> T&gt; other)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>虽然<code>Comparator</code>接口有很多方法，但只有一个抽象方法<code>int compare(T o1, T o2)</code>，其他的方法都是普通方法（default方法）或静态方法（static方法）。另外注意到<code>boolean equals(Object obj)</code>是<code>Object</code>定义的方法，不算在接口方法内。因此，<code>Comparator</code>接口也是一个函数式接口。</p>
+<p>由于只有一个抽象方法，函数式接口可以用Lambda表达式来实例化。</p>
+<h3 id="Lambda-表达式"><a href="#Lambda-表达式" class="headerlink" title="Lambda 表达式"></a>Lambda 表达式</h3><p>应用在单一抽象方法（Single Abstract Method, SAM）接口环境下的一种简化定义形式，用于解决匿名内部类的定义复杂问题。</p>
+<p>Lambda 表达式能简化匿名内部类的书写，但并不能取代所有匿名内部类，只能取代函数式接口的简写。</p>
+<p>姑且将其看作一种<strong>匿名函数</strong>，没有声明的方法，即没有访问修饰符、返回值声明、和名字。它允许你将函数作为参数传递进方法中。使代码更加简洁紧凑。</p>
+<p>语法：<code>(参数) -&gt; 方法体</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="comment">// 单一抽象方法接口</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ICalc</span> &#123;</span><br><span class="line">    <span class="comment">//单一抽象方法接口</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">calc</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Lambda</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 匿名内部类写法</span></span><br><span class="line">        fun(<span class="keyword">new</span> <span class="title class_">IPrint</span> () &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;匿名内部类&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Lambda表达式</span></span><br><span class="line">        fun1(() -&gt; System.out.println(<span class="string">&quot;Lambda&quot;</span>));</span><br><span class="line">        <span class="comment">//方法体为多行代码时打大括号</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">info</span> <span class="operator">=</span> <span class="string">&quot;信息&quot;</span>;</span><br><span class="line">        fun1(() -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;题目&quot;</span>);</span><br><span class="line">            System.out.println(info);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//覆写有参数有返回值的方法</span></span><br><span class="line">        fun2((s1, s2) -&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> s1 + s2;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//可以省略return，方法体就是一个表达式</span></span><br><span class="line">        fun2((s1, s2) -&gt; s1 + s2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fun1</span><span class="params">(IPrint msg)</span> &#123;</span><br><span class="line">        msg.print();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fun2</span><span class="params">(ICalc msg)</span> &#123;</span><br><span class="line">        System.out.println(msg.calc(<span class="number">2</span>, <span class="number">10</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假如<code>fun1(IPrint msg)</code>，<code>fun2(ICalc msg)</code>方法不能或不应该修改，就能体现出函数式编程的灵活性了。可以通过编写 Lambda 表达式来随意设置<code>fun2(ICalc msg)</code>方法中对2和10两个数字的计算方式。想改成乘法，乘方，甚至从2加到10等等……</p>
+<h3 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h3><p>在Java8中，我们可以直接通过方法引用（Method Reference）这一特性来简写 Lambda 表达式。方法引用用来直<strong>接访问类或者实例的已经存在的方法或者构造方法。</strong> 方法引用提供了一种引用而不执行方法的方式，它需要由兼容的函数式接口构成的目标类型上下文。</p>
+<p>计算时，方法引用会创建函数式接口的一个实例。 当 Lambda 表达式中只是执行一个方法调用时，不用 Lambda 表达式而是直接用方法引用可读性更高。 方法引用是一种更<strong>简洁易懂的 Lambda 表达式</strong>。</p>
+<p>两个方法的方法参数的数量和类型一致，返回类型相同，我们就说这两者方法签名一致。不看方法名称，也不看类的继承关系。如果某个方法的签名和接口恰好一致，就可以直接传入方法引用。</p>
+<p>方法引用的操作符是双冒号<code>::</code>。</p>
+<ul>
+<li><p>Lambda表达式的写法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(array, (s1, s2) -&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> s1.compareTo(s2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>引用静态方法：<code>类名称::静态方法名称</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String[] array = <span class="keyword">new</span> <span class="title class_">String</span>[] &#123; <span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Lemon&quot;</span> &#125;;</span><br><span class="line">        Arrays.sort(array, Main::cmp);<span class="comment">// 静态方法</span></span><br><span class="line">        System.out.println(String.join(<span class="string">&quot;, &quot;</span>, array));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">cmp</span><span class="params">(String s1, String s2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> s1.compareTo(s2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>引用特定类型的方法：<code>特定类::普通方法</code></p>
+<p>注意，如果引用了<code>String.compareTo()</code>这种<strong>实例方法</strong>，需要一个本类的对象A来调用，比如：<code>A.compareTo(B)</code>。观察<code>String.compareTo()</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">String</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(String o)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法的签名只有一个参数，但实际上可以作为参数传入。能与<code>int Comparator&lt;String&gt;.compare(String, String)</code>匹配。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(array, String::compareTo);</span><br></pre></td></tr></table></figure>
+
+<p>为什么？因为<strong>实例方法</strong>有一个隐含的<code>this</code>参数，<code>String</code>类的<code>compareTo()</code>方法在实际调用时，第一个隐含参数总是传入<code>this</code>，相当于静态方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(<span class="built_in">this</span>, String o)</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>引用某个对象的方法：<code>实例化对象::普通方法</code></p>
+<p>也是引用实例方法，故同上。</p>
+</li>
+<li><p>引用构造方法：<code>类名称::new</code></p>
+<p>构造方法虽然没有<code>return</code>语句，但它会隐式地返回<code>this</code>实例</p>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>无论匿名内部类、Lambda 表达式还是方法引用，都是将一个签名相对应的函数作为参数传入方法中，来灵活地参与方法内的运算，进而简化代码编写。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/05/08/java-lambda/" data-id="cl2wudi9m0000ugureaxreyia" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/05/08/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 10px;">Java</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/08/java-lambda/">Hello World!</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/08/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
