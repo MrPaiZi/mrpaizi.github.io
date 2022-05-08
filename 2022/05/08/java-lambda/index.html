@@ -7,15 +7,15 @@
   
   <title>Java 函数式编程基础 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="函数式编程最早是数学家阿隆佐·邱奇研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。 虽然Java不支持单独定义函数，但可以把静态方法视为独立的函数，把实例方法视为自带this参数的函数。从 Java 8 开始，Java 平台">
+  <meta name="description" content="函数式编程最早是数学家阿隆佐·邱奇研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。 虽然Java不支持单独定义函数，但可以把静态方法视为独立的函数，把实例方法视为自带this参数的函数。从 Java 8 开始，Java 平台支持">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 函数式编程基础">
 <meta property="og:url" content="http://example.com/2022/05/08/java-lambda/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="函数式编程最早是数学家阿隆佐·邱奇研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。 虽然Java不支持单独定义函数，但可以把静态方法视为独立的函数，把实例方法视为自带this参数的函数。从 Java 8 开始，Java 平台">
+<meta property="og:description" content="函数式编程最早是数学家阿隆佐·邱奇研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。 函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。 虽然Java不支持单独定义函数，但可以把静态方法视为独立的函数，把实例方法视为自带this参数的函数。从 Java 8 开始，Java 平台支持">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-08T05:10:47.000Z">
-<meta property="article:modified_time" content="2022-05-08T05:20:08.973Z">
+<meta property="article:modified_time" content="2022-05-08T05:32:20.632Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="函数式编程">
@@ -94,10 +94,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  函数式编程最早是数学家<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87">阿隆佐·邱奇</a>研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。</p>
+        <p>函数式编程最早是数学家<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87">阿隆佐·邱奇</a>研究的一套函数变换逻辑，又称 Lambda Calculus（λ-Calculus），所以也经常把函数式编程称为 Lambda 计算。</p>
 <p>函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数。</p>
 <p>虽然Java不支持单独定义函数，但可以把静态方法视为独立的函数，把实例方法视为自带<code>this</code>参数的函数。从 Java 8 开始，Java 平台支持函数式编程。</p>
 <p>将一个实例传入一个方法中，实例的成员方法就相当于作为参数传入其他函数的函数，这样就可以实现函数式编程。</p>
+<span id="more"></span>
+
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义接口的实现子类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Print</span> <span class="keyword">implements</span> <span class="title class_">IPrint</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 覆写IPrint中的print()方法。</span></span><br><span class="line">        System.out.println(<span class="string">&quot;实现子类的传入信息&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Lambda</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 传入子类的实例化对象</span></span><br><span class="line">        fun(<span class="keyword">new</span> <span class="title class_">Print</span>());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fun</span><span class="params">(IPrint msg)</span> &#123; <span class="comment">// 接收接口对象</span></span><br><span class="line">        msg.print();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>只需要编写<code>IPrint</code>接口的不同实现子类，设置其中的成员方法内容，就可以在不动方法<code>fun(IPrint msg)</code>本身的前提下改变传入到方法的“函数”，进而改变方法的执行结果，实现传入普通参数难以达到的灵活性。比如：</p>
