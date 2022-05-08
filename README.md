@@ -1,24 +1,16 @@
-[![Website](https://img.shields.io/website-up-down-green-red/http/i.dmego.cn.svg)](http://i.dmego.cn/)
-[![License](https://img.shields.io/github/license/dmego/home.github.io.svg)](/LICENSE)
-[![Say Thanks](https://img.shields.io/badge/Say-Thanks!-1EAEDB.svg)](https://saythanks.io/to/dmego)
-
 ### 个人主页
 
->这是我的个人主页
+> 这是我的个人主页
 
->衍生自 [Vno](https://github.com/onevcat/vno-jekyll) Jekyll 主题
-
->页面部分加载效果借鉴于 [Mno](https://github.com/mcc108/mno) Ghost 主题
-
->借鉴了[北岛向南的小屋](https://javef.github.io/)的头像样式
+> 在[dmego](https://github.com/dmego/home.github.io)的主页基础上修改而来
 
 ### 效果图
 
->静态图
+> 静态图
 
 ![主页JPG](./assets/img/home.jpg)
 
->动态图
+> 动态图
 
 ![主页GIF](./assets/img/home.gif)
 
@@ -38,10 +30,9 @@
   - `Select scopes` 勾选 `repo`
   - 点击 `Generate Token` 生成
 - 在仓库的 `Settings` ——>`Secrets` 功能栏中，点击 `new repository secrets` 按钮
-  -  在 `Name` 框中填写 `GH_TOKEN`
+  - 在 `Name` 框中填写 `GH_TOKEN`
   - 在 `Value` 栏中填写第一步生成的 `token` 值
-
 
 ### 更新时间
 
->2022-03-03(My Birthday)
+> 2022-03-03(My Birthday)
